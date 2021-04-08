@@ -1,0 +1,31 @@
+[package]
+name = "longan-blink"
+version = "0.1.0"
+authors = ["Valentine Valyaeff <valentine.valyaeff@gmail.com>"]
+edition = "2018"
+resolver = "2"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "longan-blink"
+test = false
+doc = false
+
+[features]
+default = []
+std = [
+    "drone-core/std",
+    "drone-riscv/std",
+    "futures/std",
+]
+
+[dependencies]
+drone-core = { version = "0.14.0", path = "../drone-core" }
+drone-riscv = { version = "0.14.0", path = "../drone-riscv" }
+futures = { version = "0.3.0", default-features = false }
+
+[profile.release]
+lto = true
+debug = true
+panic = "abort"
